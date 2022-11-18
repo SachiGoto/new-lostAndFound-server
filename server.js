@@ -162,16 +162,19 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(
     })
 
 
-    app.put("/editItem/:id", (req, res) => {
+    app.put("/editItem/:id",　upload.single("image"), async (req, res) => {
       // console.log(req.body);
       const ObjectId = require("mongodb").ObjectId;
+      try{
+      const result = await cloudinary.uploader.upload(req.file.path);
+
       db.collection("items")
         .findOneAndUpdate(
           { _id: ObjectId(req.params.id) },
           {
             $set: {
               title: req.body.title,
-              image: req.body.image,
+              image: result.secure_url,
               location: req.body.location,
               description: req.body.description,
               date_found: req.body.date_found,
@@ -184,11 +187,13 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(
             },
           }
         )
-        .then((result) => {
-          console.log("claim status updated");
-          res.json({ result: result });
-        })
-        .catch((error) => console.error(error));
+
+        res.json(req.body)
+        console.log("item is updated")
+    
+      } catch (error) {
+        console.error(error);
+      }
     });
 
 

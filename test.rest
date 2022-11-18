@@ -1,5 +1,5 @@
-@url = http://localhost:3000
-# @url = https://lostandfoundapis.herokuapp.com
+# @url = http://localhost:3000
+@url = https://lostandfoundapis.herokuapp.com
 
 
 # GET http://localhost:3000/
@@ -48,7 +48,7 @@ Content-Type:application/json
 
 ###
 
-PUT {{url}}/updateClaim/636213dc1fcc7edc40906680
+PUT {{url}}/updateClaim/636830179fb0a5b39e0f883f
 Content-Type:application/json
 
 
