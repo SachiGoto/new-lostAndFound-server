@@ -179,7 +179,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(
               description: req.body.description,
               date_found: req.body.date_found,
               identifying_question: req.body.identifying_question,
-              claimed: req.body.claimed,
+              claimed:false,
               contact_name: req.body.contact_name,
               email: req.body.email,
               phonenumber: req.body.phonenumber,
