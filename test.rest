@@ -47,8 +47,16 @@ Content-Type:application/json
 
 
 ###
+PUT https://lostandfoundapis.herokuapp.com/updateClaim/636830179fb0a5b39e0f883f 
+Content-Type:application/json
 
-PUT {{url}}/updateClaim/636830179fb0a5b39e0f883f
+
+{
+    "claimed": true
+}
+
+###
+PUT {{url}}/updateClaim/636213dc1fcc7edc40906680
 Content-Type:application/json
 
 
