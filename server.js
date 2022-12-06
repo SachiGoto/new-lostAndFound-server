@@ -100,7 +100,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(
           // console.log(result)
 
         let title = req.body.title,
-          image = req.body.image,
+          image = result.secure_url,
           location = req.body.location,
           description = req.body.description,
           date_found = req.body.date_found,
