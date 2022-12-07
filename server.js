@@ -172,6 +172,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(
     app.put("/editItem/:id", upload.single("image"), async (req, res) => {
       // console.log(req.body);
       const ObjectId = require("mongodb").ObjectId;
+
+      if(!req.body.image.includes("cloudinary")){ 
       try{
       const result = await cloudinary.uploader.upload(req.file.path);
 
@@ -201,6 +203,31 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(
       } catch (error) {
         console.error(error);
       }
+    }else{
+
+      db.collection("items")
+        .findOneAndUpdate(
+          { _id: ObjectId(req.params.id) },
+          {
+            $set: {
+              title: req.body.title,
+              image: req.body.image,
+              location: req.body.location,
+              description: req.body.description,
+              date_found: req.body.date_found,
+              identifying_question: req.body.identifying_question,
+              claimed:false,
+              contact_name: req.body.contact_name,
+              email: req.body.email,
+              phonenumber: req.body.phonenumber,
+              // date:new Date()
+            },
+          }
+        )
+
+             
+    }
+
     });
 
 
